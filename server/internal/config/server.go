@@ -83,3 +83,9 @@ func (s *Server) Set() {
 func (s *Server) HasTLS() bool {
 	return s.Cert != "" && s.Key != ""
 }
+
+// Addr returns the combined host:port string used to listen for connections.
+// Useful for passing directly to http.ListenAndServe.
+func (s *Server) Addr() string {
+	return fmt.Sprintf("%s:%d", s.Host, s.Port)
+}
