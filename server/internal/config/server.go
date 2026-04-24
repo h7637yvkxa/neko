@@ -58,9 +58,9 @@ func (s *Server) Bind(cmd *cobra.Command) error {
 		return err
 	}
 
-	// Changed default path prefix from "/" to "/neko" to namespace the API
-	// under a subpath, making it easier to reverse-proxy alongside other services.
-	cmd.PersistentFlags().String("server.path-prefix", "/neko", "path prefix for all HTTP routes")
+	// Changed default path prefix from "/neko" to "/" so the app is accessible
+	// at the root when running locally without a reverse proxy in front.
+	cmd.PersistentFlags().String("server.path-prefix", "/", "path prefix for all HTTP routes")
 	if err := viper.BindPFlag("server.path-prefix", cmd.PersistentFlags().Lookup("server.path-prefix")); err != nil {
 		return err
 	}
