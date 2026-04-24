@@ -30,7 +30,8 @@ func (s *Server) Bind(cmd *cobra.Command) error {
 		return err
 	}
 
-	cmd.PersistentFlags().Int("server.port", 8080, "port to bind the server to")
+	// Changed default port from 8080 to 3000 to avoid conflicts with other local services
+	cmd.PersistentFlags().Int("server.port", 3000, "port to bind the server to")
 	if err := viper.BindPFlag("server.port", cmd.PersistentFlags().Lookup("server.port")); err != nil {
 		return err
 	}
