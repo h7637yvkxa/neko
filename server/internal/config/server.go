@@ -46,7 +46,9 @@ func (s *Server) Bind(cmd *cobra.Command) error {
 		return err
 	}
 
-	cmd.PersistentFlags().StringSlice("server.cors", []string{"*"}, "allowed CORS origins")
+	// Default to no allowed origins instead of wildcard (*) for better security out of the box.
+	// Explicitly set NEKO_SERVER_CORS or --server.cors when deploying.
+	cmd.PersistentFlags().StringSlice("server.cors", []string{}, "allowed CORS origins (empty disables CORS)")
 	if err := viper.BindPFlag("server.cors", cmd.PersistentFlags().Lookup("server.cors")); err != nil {
 		return err
 	}
