@@ -26,17 +26,19 @@ func (Desktop) Init(cmd *cobra.Command) error {
 		return err
 	}
 
-	cmd.PersistentFlags().Int("desktop.width", 1280, "width of the virtual desktop in pixels")
+	// Default to 1920x1080 for a more usable desktop experience
+	cmd.PersistentFlags().Int("desktop.width", 1920, "width of the virtual desktop in pixels")
 	if err := viper.BindPFlag("desktop.width", cmd.PersistentFlags().Lookup("desktop.width")); err != nil {
 		return err
 	}
 
-	cmd.PersistentFlags().Int("desktop.height", 720, "height of the virtual desktop in pixels")
+	cmd.PersistentFlags().Int("desktop.height", 1080, "height of the virtual desktop in pixels")
 	if err := viper.BindPFlag("desktop.height", cmd.PersistentFlags().Lookup("desktop.height")); err != nil {
 		return err
 	}
 
-	cmd.PersistentFlags().Int("desktop.rate", 30, "refresh rate of the virtual desktop in Hz")
+	// Bumped default rate to 60Hz for smoother interaction
+	cmd.PersistentFlags().Int("desktop.rate", 60, "refresh rate of the virtual desktop in Hz")
 	if err := viper.BindPFlag("desktop.rate", cmd.PersistentFlags().Lookup("desktop.rate")); err != nil {
 		return err
 	}
