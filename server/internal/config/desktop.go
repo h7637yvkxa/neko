@@ -37,8 +37,9 @@ func (Desktop) Init(cmd *cobra.Command) error {
 		return err
 	}
 
-	// Bumped default rate to 60Hz for smoother interaction
-	cmd.PersistentFlags().Int("desktop.rate", 60, "refresh rate of the virtual desktop in Hz")
+	// Using 30Hz as default to reduce bandwidth usage on my home server;
+	// override with --desktop.rate=60 for smoother interaction when needed.
+	cmd.PersistentFlags().Int("desktop.rate", 30, "refresh rate of the virtual desktop in Hz")
 	if err := viper.BindPFlag("desktop.rate", cmd.PersistentFlags().Lookup("desktop.rate")); err != nil {
 		return err
 	}
